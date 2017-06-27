@@ -57,6 +57,7 @@ body {
 }
 
 #title {
+  /*margin: auto;*/
   margin-top: 20px;
   text-align: center;
   font-size: 40px;
@@ -81,6 +82,7 @@ body {
     border-style: none;
     font-size: 25px;
     text-align: center;
+    /*color: white;*/
 }
 
 #roomA {
@@ -88,23 +90,32 @@ body {
 }
 
 #roomB {
-  background-color: #FF7659;
+  background-color: #b3e6ff;
+  /*background-color: #FF7659;*/
 }
 
 #roomC {
-  background-color: #9E7AC2;
+  background-color: #bfa8d7;
 }
 
 #roomD {
-  background-color: #F36174;
+  background-color: #ff9580;
 }
 
 #roomE {
-  background-color: #F9CD36;
+  background-color: #f68897;
+}
+
+#lab2 {
+  background-color: #fad96b;
+}
+
+#lab3 {
+  background-color: #ecc6d9;
 }
 
 #buttons {
-  width: 500px;
+  width: 600px;
   margin: auto;
   margin-top: 40px;
   display: -webkit-flex;
@@ -116,6 +127,28 @@ body {
 #go, #time {
   float: left;
   margin: 10px;
+  font-size: 30px;
+  border-style: none;
+  border-radius: 50%;
+  /*padding: 20px;*/
+  width: 180px;
+  height: 180px;
+}
+
+#go {
+  background-color: #b3e6ff;
+}
+
+#time {
+  background-color: #f68897;
+}
+
+#home {
+  float: right;
+  margin-right: 20px;
+  font-size: 20px;
+  background-color: #fad96b;
+  border-style: none;
 }
 
 .app {
@@ -136,4 +169,21 @@ body {
 #info p {
   display: inline-block;
   margin: 20px auto 0 auto;
+  font-size: 20px;
+}
+
+.empty {
+  clear: both;
+}
+
+@media only screen and (max-device-width: 500px) {
+  .container {
+    flex-direction: column;
+  }
+  .room {
+    margin: auto;
+  }
+  body {
+    width: 1000px;
+  }
 }

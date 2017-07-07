@@ -50,6 +50,7 @@ table {
 
 body {
   font-family: Georgia,"Times New Roman",Times,serif;
+  width: 100%;
 }
 
 .button {
@@ -57,7 +58,6 @@ body {
 }
 
 #title {
-  /*margin: auto;*/
   margin-top: 20px;
   text-align: center;
   font-size: 40px;
@@ -66,23 +66,12 @@ body {
 
 .container {
   margin: auto;
-  margin-top: 40px;
+  margin-top: 20px;
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: center;
   justify-content: center;
-  width: 1000px;
-}
-
-.room {
-    width: 150;
-    height: 150;
-    margin: auto;
-    margin: -1px 0 0 -1px;
-    border-style: none;
-    font-size: 25px;
-    text-align: center;
-    /*color: white;*/
+  width: 100%;
 }
 
 #roomA {
@@ -91,7 +80,6 @@ body {
 
 #roomB {
   background-color: #b3e6ff;
-  /*background-color: #FF7659;*/
 }
 
 #roomC {
@@ -130,7 +118,6 @@ body {
   font-size: 30px;
   border-style: none;
   border-radius: 50%;
-  /*padding: 20px;*/
   width: 180px;
   height: 180px;
 }
@@ -149,6 +136,7 @@ body {
   font-size: 20px;
   background-color: #fad96b;
   border-style: none;
+  height: 80px;
 }
 
 .app {
@@ -176,14 +164,74 @@ body {
   clear: both;
 }
 
-@media only screen and (max-device-width: 500px) {
+.room, .button {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    margin: -1px 0 0 -1px;
+    border-style: none;
+    font-size: 25px;
+    text-align: center;
+}
+
+@media only screen and (max-device-width: 1050px) {
   .container {
-    flex-direction: column;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: space-between;
+    justify-content: center;
+    align-content: flex-start;
+    -webkit-align-content: center;
+    align-content: center;
+    align-items: center;
   }
   .room {
-    margin: auto;
+    margin: 20px;
+    padding: 5px;
+    width: 250px;
+    height: 250px;
+    font-size: 40px;
   }
-  body {
-    width: 1000px;
+}
+
+@media only screen and (max-device-width: 500px) {
+  .room {
+    margin: 8px;
+    padding: 5px;
+    width: 150px;
+    height: 150px;
+    font-size: 30px;
   }
+}
+
+@media only screen and (max-device-width: 350px) {
+  .room {
+    margin: 8px;
+    padding: 5px;
+    width: 120px;
+    height: 120px;
+    font-size: 25px;
+  }
+}
+
+.direction {
+  width: 40%;
+  height: auto;
+  margin: auto;
+  border-style: double;
+  border-width: thin;
+
+}
+
+.direction-image {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 0 auto;
+}
+
+.direction-text {
+  text-align: center;
 }

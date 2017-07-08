@@ -48,7 +48,7 @@ table {
 
 /*Fine reset*/
 
-body {
+body, h1, h2 {
   font-family: Georgia,"Times New Roman",Times,serif;
   /*width: 100%;
   height: 100%;*/
@@ -103,9 +103,9 @@ body {
   background-color: #ecc6d9;
 }
 
-#buttons {
+#buttons, #route-choice {
   width: 600px;
-  height: 900px;
+  height: auto;
   margin: auto;
   margin-top: 40px;
   display: -webkit-flex;
@@ -114,7 +114,7 @@ body {
   justify-content: center;
 }
 
-#go, #time {
+#go, #time, #fast, #easy {
   float: left;
   margin: 10px;
   font-size: 30px;
@@ -132,7 +132,15 @@ body {
   background-color: #f68897;
 }
 
-#aulaHome, #orarioHome, #percorsoHome {
+#fast {
+  background-color: #55DEA8;
+}
+
+#easy {
+  background-color: #ecc6d9;
+}
+
+#aulaHome, #orarioHome, #percorsoHome, #sceltaHome {
   float: right;
   margin-top: 20px;
   margin-right: 20px;
@@ -214,6 +222,7 @@ body {
 
 .orarioRistretto {
   margin: 10px 5px auto 5px;
+  width: 100%;
 }
 
 .orarioRistretto .time {
@@ -240,6 +249,8 @@ body {
   border-style: double;
   border-width: thin;
   padding: 10px;
+  border-left: none;
+  border-right: none;
 }
 
 .direction-image img{
@@ -274,8 +285,22 @@ body {
   line-height: 200px;
 }
 
+h2 {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 45px;
+}
 
-@media only screen and (max-device-width: 1050px) and (orientation: portrait){
+#route-choice {
+  margin: auto;
+  margin-top: 30px;
+  width: 80%;
+  height: 100%;
+
+}
+
+
+@media only screen and (max-device-width: 1050px){
   .container {
     display: -webkit-flex;
     display: flex;
@@ -295,13 +320,21 @@ body {
     height: 450px;
     font-size: 40px;
   }
-}
 
-@media only screen and (max-device-width: 1050px) {
   .tabellaOrario {
     display: none;
   }
+
+  .direction {
+    width: auto;
+  }
 }
+
+/*@media only screen and (max-device-width: 1050px) {
+  .tabellaOrario {
+    display: none;
+  }
+}*/
 
 @media only screen and (min-device-width: 1050px) {
   .orarioRistretto {
@@ -312,7 +345,7 @@ body {
   }
 }
 
-@media only screen and (max-device-width: 500px) {
+@media only screen and (max-device-width: 800px) {
   .room {
     margin: 8px;
     padding: 5px;
@@ -320,8 +353,18 @@ body {
     height: 150px;
     font-size: 30px;
   }
+}
 
-  #buttons {
+@media only screen and (max-device-width: 500px) {
+  /*.room {
+    margin: 8px;
+    padding: 5px;
+    width: 150px;
+    height: 150px;
+    font-size: 30px;
+  }*/
+
+  /*#buttons {
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
@@ -335,13 +378,13 @@ body {
     width: 450px;
     height: 450px;
     font-size: 65px;
-  }
+  }*/
 
   #roomTitle {
-    font-size: 80px;
+    font-size: 60px;
   }
 
-  #aulaHome {
+  #aulaHome, #sceltaHome, #percorsoHome {
     font-size: 45px;
     width: 180px;
     height: 90px;
@@ -353,11 +396,11 @@ body {
     height: 40px;
   }
 
-  #percorsoHome {
+  /*#percorsoHome {
     font-size: 30px;
     width: 100px;
     height: 50px;
-  }
+  }*/
 
   #orarioAula {
     font-size: 30px;
@@ -371,7 +414,7 @@ body {
   }
 
   #rootTitle {
-    margin-top: 20px;
+    margin-top: 40px;
   }
 
   #way {
@@ -395,6 +438,25 @@ body {
     margin: auto;
     line-height: normal;
     font-size: 40px;
+  }
+}
+
+@media only screen and (max-device-width: 450px) {
+
+  #buttons, #route-choice {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+
+  #go, #time, #fast, #easy {
+    margin: auto auto 20px auto;
+    width: 400px;
+    height: 400px;
+    font-size: 65px;
   }
 }
 

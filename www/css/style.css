@@ -193,6 +193,12 @@ body, h1, h2 {
 .tabellaOrario {
   margin: 20px auto auto auto;
   text-align: center;
+  width: 80%;
+  height: auto;
+}
+
+#orarioHome {
+  width: 10%;
 }
 
 .tabellaOrario tr {
@@ -217,7 +223,7 @@ body, h1, h2 {
 }
 
 .tabellaOrario #timeColumn {
-  width: 10%;
+  width: 12%;
 }
 
 .orarioRistretto {
@@ -342,6 +348,16 @@ h2 {
   }
   .empty {
     display: none;
+  }
+}
+
+@media only screen and (max-device-width: 1030px) {
+  .room {
+    margin: 8px;
+    padding: 5px;
+    width: 250px;
+    height: 250px;
+    font-size: 50px;
   }
 }
 

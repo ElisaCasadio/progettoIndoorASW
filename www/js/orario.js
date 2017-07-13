@@ -18,68 +18,71 @@ function start() {
   var url_string = window.location.href;
   var url = new URL(url_string);
   var aula = url.searchParams.get("aula");
-
+  console.log("Nome aula = " + aula);
   addTitle(aula);
 
-  getTimetables(aula);
+  getGiorni(aula);
 }
 
-function getTimetables(aula) {
+function getGiorni(aula) {
   var days;
-  var hours;
   var xmlhttpGiorno = new XMLHttpRequest();
   xmlhttpGiorno.onreadystatechange = function() {
       if (xmlhttpGiorno.readyState == 4 && xmlhttpGiorno.status == 200) {
           var risposta = xmlhttpGiorno.responseText;
           days = createDaysArray(risposta);
+          getOre(aula, days);
       }
   };
   var indirizzo = "http://progettoindoor.altervista.org/getDays.php";
   xmlhttpGiorno.open("GET", indirizzo, true);
   xmlhttpGiorno.send();
+}
 
+function getOre(aula, days) {
   var xmlhttpOra = new XMLHttpRequest();
   xmlhttpOra.onreadystatechange = function() {
       if (xmlhttpOra.readyState == 4 && xmlhttpOra.status == 200) {
           var risposta = xmlhttpOra.responseText;
-          hours = createHoursArray(risposta);
+          var hours = createHoursArray(risposta);
+          getTimetables(aula, days, hours);
           //alert("Numero ore ritornate = " + hours.length);
       }
   };
   var indirizzo = "http://progettoindoor.altervista.org/getHours.php";
-  //alert("indirizzo ore = " + indirizzo);
   xmlhttpOra.open("GET", "http://progettoindoor.altervista.org/getHours.php", true);
   xmlhttpOra.send();
-
-  var xmlhttpOrario = new XMLHttpRequest();
-  xmlhttpOrario.onreadystatechange = function() {
-      if (xmlhttpOrario.readyState == 4 && xmlhttpOrario.status == 200) {
-          var risposta = xmlhttpOrario.responseText;
-          //alert("Risposta = " + risposta);
-          analizzaRisposta(days, hours, risposta);
-      }
-  };
-  xmlhttpOrario.open("GET", "http://progettoindoor.altervista.org/getTimetables.php?aula=" + aula, true);
-  xmlhttpOrario.send();
 }
 
-function analizzaRisposta(days, hours, risposta) {
+function getTimetables(aula, days, hours) {
+  var xmlhttpOrarioH = new XMLHttpRequest();
+  xmlhttpOrarioH.onreadystatechange = function() {
+      if (xmlhttpOrarioH.readyState == 4 && xmlhttpOrarioH.status == 200) {
+          var risposta = xmlhttpOrarioH.responseText;
+          creaTabellaGrande(days, hours, risposta);
+      }
+  };
+  var indH = "http://progettoindoor.altervista.org/getTimetablesHours.php?aula=\"" + aula + "\"";
+  console.log("Indirrizo " + indH);
+  xmlhttpOrarioH.open("GET", indH, true);
+  xmlhttpOrarioH.send();
+
+  var xmlhttpOrarioD = new XMLHttpRequest();
+  xmlhttpOrarioD.onreadystatechange = function() {
+      if (xmlhttpOrarioD.readyState == 4 && xmlhttpOrarioD.status == 200) {
+          var risposta = xmlhttpOrarioD.responseText;
+          creaTabellaPiccola(days, hours, risposta);
+      }
+  };
+  var indD = "http://progettoindoor.altervista.org/getTimetablesDays.php?aula=\"" + aula + "\"";
+  console.log("Indirizzo 2: " + indD);
+  xmlhttpOrarioD.open("GET", indD, true);
+  xmlhttpOrarioD.send();
+}
+
+function creaTabellaGrande(days, hours, risposta) {
   var orario = JSON.parse(risposta);
   var indexLesson = 0;
-  //var lezione1 = JSON.stringify(orario[0]);
-  /*for (var i = 0; i < orario.length; i++) {
-    var lezione1 = orario[i];
-
-    var inizio = lezione1['OraInizio'];
-    var fine = lezione1['OraFine'];
-    var idora = lezione1['OraId'];
-    var gg = lezione1['NomeGiorno'];
-    var idgg = lezione1['GiornoId'];
-    var mat = lezione1['NomeMateria'];
-    /*alert("Ora di inizio = " + inizio + " \n Ora di fine = " + fine +
-        "\n Giorno = " + gg + "\n Materia = " + mat);*/
-  //}
-
   var tablearea = document.getElementById('tabellaGrande');
   var table = document.createElement('table');
   table.setAttribute("class", "tabellaOrario");
@@ -115,7 +118,7 @@ function analizzaRisposta(days, hours, risposta) {
       var index = i+1;
       var lesson = orario[indexLesson];
       var s;
-      if(lesson['OraId'] == hours[j].id &&
+      if(lesson!=null && lesson['OraId'] == hours[j].id &&
           lesson['GiornoId'] == days[i].id) {
           s = lesson['NomeMateria'];
           indexLesson = indexLesson + 1;
@@ -129,7 +132,67 @@ function analizzaRisposta(days, hours, risposta) {
 
   tablearea.appendChild(table);
 
-  //tabellaFake();
+}
+
+function creaTabellaPiccola(days, hours, risposta) {
+  var orario = JSON.parse(risposta);
+  var indexLesson = 0;
+  var tablearea = document.getElementById('tabellaPiccola');
+  var table = document.createElement('table');
+  table.setAttribute("class", "orarioRistretto");
+
+  for(var i = 0; i < days.length; i++ ) {
+    var trgg = document.createElement('tr');
+    trgg.appendChild(document.createElement('th'));
+    trgg.cells[0].setAttribute("colspan", "2");
+    var nome = days[i].nome;
+    trgg.cells[0].appendChild(document.createTextNode(nome));
+    table.appendChild(trgg);
+
+    for(var j=0; j<hours.length; j++) {
+        var lesson = orario[indexLesson];
+        if(lesson != null && lesson['OraId'] == hours[j].id &&
+            lesson['GiornoId'] == days[i].id) {
+              var idMat = lesson['MateriaId'];
+              var nome = lesson['NomeMateria'];
+
+              var indexLesson2 = indexLesson + 1;
+              var inc = 0;
+              var lastLess;
+              while (indexLesson2 < orario.length && (j + inc) < hours.length
+                && orario[indexLesson2]['MateriaId'] == idMat) {
+                  inc = inc + 1;
+                  lastLess = orario[indexLesson2];
+                  indexLesson2 = indexLesson2 + 1;
+              }
+
+              var inizio = hours[j].inizio;
+
+              if(inc != 0) {
+                indexLesson = indexLesson + inc;
+                j = j + inc;
+                var fine = hours[j].fine;
+              }
+
+              inizio = inizio.replace(':00', '');
+              fine = fine.replace(':00', '');
+              var text = inizio + " - " + fine;
+
+              var trless = document.createElement('tr');
+              trless.appendChild(document.createElement('td'));
+              trless.appendChild(document.createElement('td'));
+              trless.cells[0].setAttribute("class", "time");
+              trless.cells[0].appendChild(document.createTextNode(text));
+              trless.cells[1].appendChild(document.createTextNode(nome));
+              indexLesson = indexLesson + 1;
+
+              table.appendChild(trless);
+        }
+    }
+  }
+
+  tablearea.appendChild(table);
+
 }
 
 function tabellaFake() {

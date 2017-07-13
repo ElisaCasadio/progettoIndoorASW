@@ -1,8 +1,10 @@
 $(document).ready(function() {
     var url_string = window.location.href;
     var url = new URL(url_string);
+    var aula = url.searchParams.get("aula");
+    document.getElementById("roomNameDirection").innerHTML = aula;
     var cat = url.searchParams.get("cat");
-    getDirectionFromBeacon("00000001", "Aula B", cat);
+    getDirectionFromBeacon("00000001", aula, cat);
 });
 
 function createNewDirection(src, alt, text) {

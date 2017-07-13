@@ -5,21 +5,23 @@
     <meta charset="utf-8">
     <meta name="author" content="Sofia Rosetti">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/aula.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   </head>
   <body class="withBG">
     <button id="aulaHome" class="button" type="button" onclick="window.location.href='index.html';">Home</button>
     <div class="empty"></div>
     <div class="app">
-      <h1 id="roomTitle" class="titles">Aula X</h1>
+      <h1 id="roomTitle" class="titles"><p id="roomName"></p></h1>
       <div id="buttons">
-        <button id="go" class="button" type="button" onclick="window.location.href='scelta_percorso.html';">Raggiungi</button>
-        <button id="time" class="button" type="button" onclick="window.location.href='orario.html';">Orario</button>
+        <button id="go" class="button" type="button">Raggiungi</button>
+        <button id="time" class="button" type="button">Orario</button>
       </div>
       <div id="info">
-        <p>Numero posti: 50</p>
-        <p>Al momento l'aula è libera</p>
+        <div><p>Numero posti: </p></div><p id="num_posti"></p>
+        <div><p>Al momento l'aula è </p></div><p id="libera"></p>
       </div>
     </div>
-    <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>

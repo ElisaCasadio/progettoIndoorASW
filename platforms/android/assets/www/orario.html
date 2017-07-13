@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Orario</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Sara Sintoni">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/orario.js"></script>
+
+  </head>
+
+  <body>
+    <!-- <div id="risposta">Ciaoooo</div> -->
+
+    <button id="orarioHome" class="button" type="button" onclick="window.location.href='index.html';">Home</button>
+    <div id="titolo">
+      <!-- <h1 id="orarioAula" class="titles">Orario aula X</h1> -->
+    </div>
+
+
+    <div id="tabellaGrande"></div>
+     <!-- <table class="tabellaOrario">
+      <tr>
+       <th id="timeColumn"></th>
+       <th>Lunedì</th>
+       <th>Martedì</th>
+       <th>Mercoledì</th>
+       <th>Giovedì</th>
+       <th>Venerdì</th>
+       </tr>
+
+       <tr>
+         <td>09:00 - 10:00</td>
+         <td>Applicazioni e servizi web</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+       </tr>
+       <tr>
+         <td>10:00 - 11:00</td>
+         <td></td>
+         <td rowspan="2">Applicazioni e servizi web</td>
+         <td></td>
+         <td></td>
+         <td>Applicazioni e servizi web</td>
+       </tr>
+       <tr>
+         <td>11:00 - 12:00</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+       </tr>
+       <tr>
+         <td>12:00 - 13:00</td>
+         <td></td>
+         <td></td>
+         <td rowspan="3">Applicazioni e servizi web <br/> (Silvia Mirri)</td>
+         <td></td>
+         <td></td>
+       </tr>
+       <tr>
+         <td>13:00 - 14:00</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+       </tr>
+       <tr>
+         <td>14:00 - 15:00</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+       </tr>
+       <tr>
+         <td>15:00 - 16:00</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+       </tr>
+       <tr>
+         <td>16:00 - 17:00</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td>Applicazioni e servizi web</td>
+         <td></td>
+       </tr>
+       <tr>
+         <td>17:00 - 18:00</td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+         <td></td>
+       </tr>
+     </table>  -->
+
+     <table class="orarioRistretto">
+       <tr>
+         <th colspan="2">Lunedì</th>
+       </tr>
+       <tr>
+         <td class="time">09:00 - 10:00</th>
+         <td>Applicazioni e servizi web</td>
+       </tr>
+       <tr>
+         <td class="time">10:00 - 11:00</th>
+         <td>Programmazione Concorrente e Distribuita</td>
+       </tr>
+       <tr>
+         <td class="time">11:00 - 12:00</th>
+         <td>Paradigmi di Programmazione e Sviluppo</td>
+       </tr>
+       <tr>
+         <th colspan="2">Martedì</th>
+       </tr>
+       <tr>
+         <td class="time">09:00 - 10:00</th>
+         <td>Sicurezza delle Reti</td>
+       </tr>
+       <tr>
+         <td class="time">10:00 - 11:00</th>
+         <td>Sistemi Informativi</td>
+       </tr>
+       <tr>
+         <td class="time">11:00 - 12:00</th>
+         <td>Linguaggi Compilatori e Modelli Computazionali</td>
+       </tr>
+       <!-- <tr>
+        <th></th>
+        <th>Lunedì</th>
+        <th>Martedì</th>
+        </tr>
+        <tr>
+          <td>09:00 - 10:00</td>
+          <td>Applicazioni e servizi web</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>10:00 - 11:00</td>
+          <td></td>
+          <td rowspan="2">Applicazioni e servizi web</td>
+        </tr>
+        <tr>
+          <td>11:00 - 12:00</td>
+          <td></td>
+        </tr> -->
+      </table>
+   <!-- <div class="orarioRistretto">
+     <div class="giorno">
+       <h3 class="nomeGiorno">Lunedì</h3>
+       <div class="rigaOrario">
+          <p class="ora">09:00 - 10:00</p>
+          <p class="materia">Applicazioni e servizi web</p>
+       </div>
+
+       <div class="rigaOrario">
+          <p class="ora">10:00 - 11:00</p>
+          <p class="materia">Programmazione Concorrente e Distribuita</p>
+       </div>
+
+       <div class="rigaOrario">
+          <p class="ora">11:00 - 12:00</p>
+          <p class="materia">Paradigmi di Programmazione e Sviluppo</p>
+       </div>
+     </div>
+
+     <div class="giorno">
+       <h3 class="nomeGiorno">Martedì</h3>
+       <div class="rigaOrario">
+          <p class="ora">09:00 - 10:00</p>
+          <p class="materia">Applicazioni e servizi web</p>
+       </div>
+
+       <div class="rigaOrario">
+          <p class="ora">10:00 - 11:00</p>
+          <p class="materia">Programmazione Concorrente e Distribuita</p>
+       </div>
+
+       <div class="rigaOrario">
+          <p class="ora">11:00 - 12:00</p>
+          <p class="materia">Paradigmi di Programmazione e Sviluppo</p>
+       </div>
+     </div>
+   </div> -->
+
+   <div id="tablearea"></div>
+
+ </body>
+</html>

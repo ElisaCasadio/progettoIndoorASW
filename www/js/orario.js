@@ -67,7 +67,7 @@ function analizzaRisposta(days, hours, risposta) {
   var orario = JSON.parse(risposta);
   var indexLesson = 0;
   //var lezione1 = JSON.stringify(orario[0]);
-  for (var i = 0; i < orario.length; i++) {
+  /*for (var i = 0; i < orario.length; i++) {
     var lezione1 = orario[i];
 
     var inizio = lezione1['OraInizio'];
@@ -78,7 +78,7 @@ function analizzaRisposta(days, hours, risposta) {
     var mat = lezione1['NomeMateria'];
     /*alert("Ora di inizio = " + inizio + " \n Ora di fine = " + fine +
         "\n Giorno = " + gg + "\n Materia = " + mat);*/
-  }
+  //}
 
   var tablearea = document.getElementById('tabellaGrande');
   var table = document.createElement('table');
@@ -113,14 +113,23 @@ function analizzaRisposta(days, hours, risposta) {
 
     for(var i = 0; i < days.length; i++) {
       var index = i+1;
-      tr.cells[index].appendChild(document.createTextNode("Ciao"));
+      var lesson = orario[indexLesson];
+      var s;
+      if(lesson['OraId'] == hours[j].id &&
+          lesson['GiornoId'] == days[i].id) {
+          s = lesson['NomeMateria'];
+          indexLesson = indexLesson + 1;
+      } else {
+          s = "";
+      }
+      tr.cells[index].appendChild(document.createTextNode(s));
     }
     table.appendChild(tr);
   }
 
   tablearea.appendChild(table);
 
-  tabellaFake();
+  //tabellaFake();
 }
 
 function tabellaFake() {

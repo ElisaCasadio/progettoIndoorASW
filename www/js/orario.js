@@ -102,11 +102,10 @@ function creaTabellaGrande(days, hours, risposta) {
   table.appendChild(tr);
 
   //altrerighe
+  var trold;
   for(var j=0; j<hours.length; j++) {
     var tr = document.createElement('tr');
-    for(var i = 0; i <= days.length; i++) {
-      tr.appendChild(document.createElement('td'));
-    }
+    tr.appendChild(document.createElement('td'));
     var inizio = hours[j].inizio;
     var fine = hours[j].fine;
     inizio = inizio.replace(':00', '');
@@ -114,19 +113,36 @@ function creaTabellaGrande(days, hours, risposta) {
     var text = inizio + " - " + fine;
     tr.cells[0].appendChild(document.createTextNode(text));
 
+    var index = 1;
     for(var i = 0; i < days.length; i++) {
-      var index = i+1;
       var lesson = orario[indexLesson];
       var s;
       if(lesson!=null && lesson['OraId'] == hours[j].id &&
           lesson['GiornoId'] == days[i].id) {
-          s = lesson['NomeMateria'];
+            s = lesson['NomeMateria'];
+            if(trold != null) {
+              if(trold.cells[index] != null &&
+                trold.cells[index].innerHTML == s) {
+                trold.cells[index].setAttribute("rowspan", "2");
+              } else {
+                tr.appendChild(document.createElement('td'));
+                tr.cells[index].appendChild(document.createTextNode(s));
+                index = index + 1;
+              }
+            } else {
+              tr.appendChild(document.createElement('td'));
+              tr.cells[index].appendChild(document.createTextNode(s));
+              index = index + 1;
+            }
           indexLesson = indexLesson + 1;
       } else {
-          s = "";
+        tr.appendChild(document.createElement('td'));
+        s = "";
+        tr.cells[index].appendChild(document.createTextNode(s));
+        index = index + 1;
       }
-      tr.cells[index].appendChild(document.createTextNode(s));
     }
+    trold = tr;
     table.appendChild(tr);
   }
 

@@ -1,6 +1,8 @@
 $(document).ready(function() {
-    //createNewDirection("img/ahead.png","Freccia dritto","Dritto");
-    getDirectionFromBeacon("00000001", "Aula B", 1);
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var cat = url.searchParams.get("cat");
+    getDirectionFromBeacon("00000001", "Aula B", cat);
 });
 
 function createNewDirection(src, alt, text) {

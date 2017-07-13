@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    createNewDirection("img/ahead.png","Freccia dritto","Dritto");
+    //createNewDirection("img/ahead.png","Freccia dritto","Dritto");
+    getDirectionFromBeacon("00000001", "Aula B", 1);
 });
 
 function createNewDirection(src, alt, text) {
@@ -20,6 +21,24 @@ function createNewDirection(src, alt, text) {
     newTextDirection.appendChild(textDirection);
     newDirection.appendChild(newTextDirection);
     document.getElementById("way").appendChild(newDirection);
+}
+
+function getDirectionFromBeacon(uuid, room, cat) {
+    var xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var allDirectionFromBeacon = JSON.parse(xmlhttp.responseText);
+            var i;
+            for (i = 0; i < allDirectionFromBeacon.length; i++) {
+                createNewDirection(allDirectionFromBeacon[i].Immagine,
+                    allDirectionFromBeacon[i].Alt,
+                    allDirectionFromBeacon[i].Testo);
+            }
+        }
+    }
+    xmlhttp.open("GET", "http://progettoindoor.altervista.org/getInstructions.php?UUID=" + 
+            uuid + "&dest=\'" + room + "\'&cat=" + cat, true);
+    xmlhttp.send();
 }
 
 /*FOR AJAX:

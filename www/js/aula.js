@@ -4,7 +4,8 @@ $(document).ready(function() {
   $("#go").click(function(){
     var percorso = 'scelta_percorso.html?aula='+nomeAula;
     console.log(percorso);
-    window.location.href='scelta_percorso.html?aula='+nomeAula;
+    //window.location.href='scelta_percorso.html?aula='+nomeAula;
+    window.location.href='percorso.html?aula='+nomeAula;
   });
   $("#time").click(function(){
     var percorso = 'scelta_percorso.html?aula='+nomeAula;

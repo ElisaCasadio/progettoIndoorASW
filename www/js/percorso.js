@@ -1,6 +1,37 @@
 $(document).ready(function() {
     var url_string = window.location.href;
     var url = new URL(url_string);
+    var room = url.searchParams.get("aula");
+    document.getElementById("roomNameDirection").innerHTML = room;
+    typeRoute(room);
+});
+
+function typeRoute(room) {
+    var xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var allRoute = JSON.parse(xmlhttp.responseText);
+            parseRoute(allRoute, room);
+        }
+    };
+    xmlhttp.open("GET", "http://progettoindoor.altervista.org/getAllTypeRoute.php", true);
+    xmlhttp.send();
+}
+
+function parseRoute(allRoute, room) {
+    var out = "";
+    var i;
+    for (i = 0; i < allRoute.length; i++) {
+        out += '<button id=\"' + allRoute[i].Tipo + 
+                '" class="button" type="button" onclick="startScanForBeacons(\'' + room + '\', ' + (i+1) + ');">' + 
+                allRoute[i].Descrizione + '</button>';
+    }
+    document.getElementById("route-choice").innerHTML = out;
+}
+
+/*$(document).ready(function() {
+    var url_string = window.location.href;
+    var url = new URL(url_string);
     var aula = url.searchParams.get("aula");
     document.getElementById("roomNameDirection").innerHTML = aula;
     var cat = url.searchParams.get("cat");
@@ -9,16 +40,30 @@ $(document).ready(function() {
     $("#x").click(function() {
         startScanForBeacons();
     });
-});
+});*/
 
-function print(string) {
+/*function print(string) {
   var div = document.getElementById("way");
   var p = document.createElement('p');
   p.innerHTML = string;
   div.appendChild(p);
+}*/
+
+function showElement() {
+    document.getElementById("rootTitle").style.display = 'block';
+    document.getElementById("way").style.display = 'block';
 }
 
-function startScanForBeacons() {
+function hiddenElement() {
+    document.getElementById("choice").style.display = 'none';
+    document.getElementById("route-choice").style.display = 'none';
+}
+
+function startScanForBeacons(room, cat) {
+    
+    hiddenElement();
+    showElement();
+    
   var beaconRegions = [
 
   {
@@ -51,7 +96,7 @@ function startScanForBeacons() {
       var s = 'didDetermineStateForRegion did not return data';
     }
 
-    print(s);
+    //print(s);
   };
 
   delegate.didStartMonitoringForRegion = function(pluginResult)
@@ -62,7 +107,7 @@ function startScanForBeacons() {
       var s = "didStartMonitoringForRegion is empty";
     }
 
-    print(s);
+    //print(s);
   };
 
   delegate.didRangeBeaconsInRegion = function(pluginResult)
@@ -76,10 +121,11 @@ function startScanForBeacons() {
         var region = result['region'];
         s = s + "\n - regione = " + JSON.stringify(region);
         s = s + "\n - uuid = " + region['uuid'];
+        getDirectionFromBeacon(region['uuid'], room, cat);
     } else {
         var s = "didEnterRegion has no data.";
     }
-    print(s);
+    //print(s);
   };
 
   cordova.plugins.locationManager.setDelegate(delegate);
@@ -96,17 +142,17 @@ function startScanForBeacons() {
     var beaconRegion = new cordova.plugins.locationManager.BeaconRegion(
       region.id, region.uuid, region.major, region.minor);
 
-    print(beaconRegion);
+    //print(beaconRegion);
 
 
     // Start monitoring.
     cordova.plugins.locationManager.startMonitoringForRegion(beaconRegion)
-      .fail(function(e) {print(e);})
+      .fail(function(e) {/*print(e);*/})
       .done();
 
     // Start ranging.
     cordova.plugins.locationManager.startRangingBeaconsInRegion(beaconRegion)
-      .fail(function(e) {print(e);})
+      .fail(function(e) {/*print(e);*/})
       .done();
   }
 
@@ -144,7 +190,7 @@ function getDirectionFromBeacon(uuid, room, cat) {
                     allDirectionFromBeacon[i].Testo);
             }
         }
-    }
+    };
     xmlhttp.open("GET", "http://progettoindoor.altervista.org/getInstructions.php?UUID=" +
             uuid + "&dest=\'" + room + "\'&cat=" + cat, true);
     xmlhttp.send();

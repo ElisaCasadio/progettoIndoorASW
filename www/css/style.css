@@ -164,12 +164,42 @@ body, h1, h2 {
   -webkit-justify-content: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 20px;
 }
 
-#info p {
+/*#info p {
   display: inline-block;
   margin: 20px auto 0 auto;
   font-size: 45px;
+}*/
+
+/*#info div {
+  width: 50%;
+}
+
+#num_posti {
+  width: 50%;
+  margin: 0;
+}
+
+#info div, #num_posti {
+  display: inline-block;
+  float: left;
+}*/
+
+.info_container {
+  display: -webkit-flex;
+  display: flex;
+  margin: auto;
+  padding-top: 10px;
+}
+
+.info_item p {
+  padding-right: 10px;
+}
+
+.info_p {
+  font-size: 55px;
 }
 
 .empty {
@@ -375,6 +405,8 @@ h2 {
   }
 }
 
+
+
 @media only screen and (max-device-width: 800px) {
   .room {
     margin: 8px;
@@ -385,30 +417,13 @@ h2 {
   }
 }
 
-@media only screen and (max-device-width: 500px) {
-  /*.room {
-    margin: 8px;
-    padding: 5px;
-    width: 150px;
-    height: 150px;
-    font-size: 30px;
-  }*/
-
-  /*#buttons {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: column;
-    flex-direction: column;
-    -webkit-justify-content: center;
-    justify-content: center;
+@media only screen and (min-device-width: 500px) {
+  .info_p {
+    font-size: 35px;
   }
+}
 
-  #go, #time {
-    margin: auto auto 20px auto;
-    width: 450px;
-    height: 450px;
-    font-size: 65px;
-  }*/
+@media only screen and (max-device-width: 500px) {
 
   #roomTitle {
     font-size: 60px;
@@ -425,12 +440,6 @@ h2 {
     width: 70px;
     height: 40px;
   }
-
-  /*#percorsoHome {
-    font-size: 30px;
-    width: 100px;
-    height: 50px;
-  }*/
 
   #orarioAula {
     font-size: 30px;

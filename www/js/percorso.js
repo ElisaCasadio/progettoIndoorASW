@@ -136,7 +136,7 @@ function startScanForBeacons(room, cat) {
         if(found == false) {
           //print("Chiedo");
           getDirectionFromBeacon(UUID, room, cat);
-          //listUUID.push(UUID);
+          listUUID.push(UUID);
         }/* else {
           print("Non chiedo");
         }*/

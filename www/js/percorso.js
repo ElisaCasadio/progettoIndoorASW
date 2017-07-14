@@ -32,19 +32,6 @@ function parseRoute(allRoute, room) {
     document.getElementById("route-choice").innerHTML = out;
 }
 
-/*$(document).ready(function() {
-    var url_string = window.location.href;
-    var url = new URL(url_string);
-    var aula = url.searchParams.get("aula");
-    document.getElementById("roomNameDirection").innerHTML = aula;
-    var cat = url.searchParams.get("cat");
-    getDirectionFromBeacon("00000001", aula, cat);
-
-    $("#x").click(function() {
-        startScanForBeacons();
-    });
-});*/
-
 function print(string) {
   var div = document.getElementById("way");
   var p = document.createElement('p');
@@ -68,7 +55,6 @@ function startScanForBeacons(room, cat) {
     showElement();
 
   var beaconRegions = [
-
   {
         id: 'd0e7eb3102d7',
         uuid:'B9407F30-F5F8-466E-AFF9-25556B57FEED',
@@ -98,8 +84,6 @@ function startScanForBeacons(room, cat) {
     } else {
       var s = 'didDetermineStateForRegion did not return data';
     }
-
-    //print(s);
   };
 
   delegate.didStartMonitoringForRegion = function(pluginResult)
@@ -109,22 +93,14 @@ function startScanForBeacons(room, cat) {
     } else {
       var s = "didStartMonitoringForRegion is empty";
     }
-
-    //print(s);
   };
 
-  delegate.didRangeBeaconsInRegion = function(pluginResult)
-  {
-
-  };
+  delegate.didRangeBeaconsInRegion = function(pluginResult){ };
 
   delegate.didEnterRegion = function(result){
-    //print("entrato");
     if(result){
-        //print("ENTERED REGION! ");// + JSON.stringify(result);
         var region = result['region'];
         var UUID = region['uuid'];
-        //print("UUID =" + UUID);
         var found = false;
         for(var i=0; i<listUUID.length; i++) {
           if(listUUID[i] == UUID) {
@@ -134,16 +110,12 @@ function startScanForBeacons(room, cat) {
         s = s + "\n - regione = " + JSON.stringify(region);
         s = s + "\n - uuid = " + region['uuid'];
         if(found == false) {
-          //print("Chiedo");
           getDirectionFromBeacon(UUID, room, cat);
           listUUID.push(UUID);
-        }/* else {
-          print("Non chiedo");
-        }*/
+        }
     } else {
         var s = "didEnterRegion has no data.";
     }
-    //print(s);
   };
 
   cordova.plugins.locationManager.setDelegate(delegate);
@@ -152,16 +124,8 @@ function startScanForBeacons(room, cat) {
   {
     var region = beaconRegions[i];
 
-    /*print("Identificatore = " + region.id);
-    print("UUID = " + region.uuid);
-    print("Major = " + region.major);
-    print("Minor = " + region.minor);
-    print("-----");*/
     var beaconRegion = new cordova.plugins.locationManager.BeaconRegion(
       region.id, region.uuid, region.major, region.minor);
-
-    //print(beaconRegion);
-
 
     // Start monitoring.
     cordova.plugins.locationManager.startMonitoringForRegion(beaconRegion)
@@ -213,10 +177,8 @@ function getDirectionFromBeacon(uuid, room, cat) {
     };
     var ind = "http://progettoindoor.altervista.org/getInstructions.php?UUID=\"" +
             uuid + "\"&dest=\"" + room + "\"&cat=" + cat;
-            //print("Indirizzo = " + ind);
     xmlhttp.open("GET", ind, true);
     xmlhttp.send();
-    //print("Richiesta inviata");
 }
 
 /*FOR AJAX:

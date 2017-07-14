@@ -46,7 +46,6 @@ function getOre(aula, days) {
           var risposta = xmlhttpOra.responseText;
           var hours = createHoursArray(risposta);
           getTimetables(aula, days, hours);
-          //alert("Numero ore ritornate = " + hours.length);
       }
   };
   var indirizzo = "http://progettoindoor.altervista.org/getHours.php";

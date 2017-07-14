@@ -59,8 +59,6 @@ table {
 
 body, h1, h2 {
   font-family: Georgia,"Times New Roman",Times,serif;
-  /*width: 100%;
-  height: 100%;*/
 }
 
 .button {
@@ -176,26 +174,6 @@ body, h1, h2 {
   margin-top: 20px;
 }
 
-/*#info p {
-  display: inline-block;
-  margin: 20px auto 0 auto;
-  font-size: 45px;
-}*/
-
-/*#info div {
-  width: 50%;
-}
-
-#num_posti {
-  width: 50%;
-  margin: 0;
-}
-
-#info div, #num_posti {
-  display: inline-block;
-  float: left;
-}*/
-
 .info_container {
   display: -webkit-flex;
   display: flex;
@@ -244,10 +222,6 @@ body, h1, h2 {
 .tabellaOrario tr {
   height: 40px;
 }
-
-/*.orarioRistretto tr:nth-child(even) {
-  background-color: #fff7e3;
-}*/
 
 .tabellaOrario th {
   width: 18%;
@@ -308,7 +282,6 @@ body, h1, h2 {
   padding: 10px;
   border-left: none;
   border-right: none;
-  /*background-color: white;*/
 }
 
 .direction-image img{
@@ -354,19 +327,13 @@ h2 {
   margin-top: 30px;
   width: 80%;
   height: 100%;
-
 }
 
 
 @media only screen and (max-device-width: 1050px){
 
-  /*.lightBG {
-    background-color: #fff7e3;
-  }*/
 
   .withBG {
-    /*width: 100%;
-    height: 100%;*/
     background:linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('../img/bg.png');
     background-size: cover;
   }
@@ -399,12 +366,6 @@ h2 {
     width: auto;
   }
 }
-
-/*@media only screen and (max-device-width: 1050px) {
-  .tabellaOrario {
-    display: none;
-  }
-}*/
 
 @media only screen and (min-device-width: 1050px) {
   .orarioRistretto {

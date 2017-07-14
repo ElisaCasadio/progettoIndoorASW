@@ -198,7 +198,7 @@ function getDirectionFromBeacon(uuid, room, cat) {
             //print("Indirizzo = " + ind);
     xmlhttp.open("GET", ind, true);
     xmlhttp.send();
-    print("Richiesta inviata");
+    //print("Richiesta inviata");
 }
 
 /*FOR AJAX:

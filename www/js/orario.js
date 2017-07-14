@@ -183,12 +183,13 @@ function creaTabellaPiccola(days, hours, risposta) {
               }
 
               var inizio = hours[j].inizio;
+              var fine;
 
               if(inc != 0) {
                 indexLesson = indexLesson + inc;
                 j = j + inc;
-                var fine = hours[j].fine;
               }
+              fine = hours[j].fine;
 
               inizio = inizio.replace(':00', '');
               fine = fine.replace(':00', '');

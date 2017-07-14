@@ -235,8 +235,7 @@ body, h1, h2 {
   height: 40px;
 }
 
-.tabellaOrario tr:nth-child(even), .orarioRistretto tr:nth-child(even) {
-  /*background-color: #f2f2f2;*/
+.orarioRistretto tr:nth-child(even) {
   background-color: #fff7e3;
 }
 

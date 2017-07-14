@@ -22,8 +22,8 @@ function parseRoute(allRoute, room) {
     var out = "";
     var i;
     for (i = 0; i < allRoute.length; i++) {
-        out += '<button id=\"' + allRoute[i].Tipo + 
-                '" class="button" type="button" onclick="startScanForBeacons(\'' + room + '\', ' + (i+1) + ');">' + 
+        out += '<button id=\"' + allRoute[i].Tipo +
+                '" class="button" type="button" onclick="startScanForBeacons(\'' + room + '\', ' + (i+1) + ');">' +
                 allRoute[i].Descrizione + '</button>';
     }
     document.getElementById("route-choice").innerHTML = out;
@@ -42,12 +42,12 @@ function parseRoute(allRoute, room) {
     });
 });*/
 
-/*function print(string) {
+function print(string) {
   var div = document.getElementById("way");
   var p = document.createElement('p');
   p.innerHTML = string;
   div.appendChild(p);
-}*/
+}
 
 function showElement() {
     document.getElementById("rootTitle").style.display = 'block';
@@ -60,10 +60,10 @@ function hiddenElement() {
 }
 
 function startScanForBeacons(room, cat) {
-    
+
     hiddenElement();
     showElement();
-    
+
   var beaconRegions = [
 
   {
@@ -80,7 +80,7 @@ function startScanForBeacons(room, cat) {
       },
     {
         id: 'd89b71d1f85b',
-        uuid:'B9407F30-F5F8-466E-AFF9-25556B57FE6D',
+        uuid:'083A8F19-7CAE-9B2A-BDAF-5CDFBC9AA7DB',
         major: 63579,
         minor: 29137
       }
@@ -182,7 +182,9 @@ function getDirectionFromBeacon(uuid, room, cat) {
     var xmlhttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
     xmlhttp.onreadystatechange = function() {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+          //print("Risposta ricevuta " + xmlhttp.responseText);
             var allDirectionFromBeacon = JSON.parse(xmlhttp.responseText);
+            //print("Direzione ricevute " + allDirectionFromBeacon.length);
             var i;
             for (i = 0; i < allDirectionFromBeacon.length; i++) {
                 createNewDirection(allDirectionFromBeacon[i].Immagine,
@@ -191,9 +193,12 @@ function getDirectionFromBeacon(uuid, room, cat) {
             }
         }
     };
-    xmlhttp.open("GET", "http://progettoindoor.altervista.org/getInstructions.php?UUID=" +
-            uuid + "&dest=\'" + room + "\'&cat=" + cat, true);
+    var ind = "http://progettoindoor.altervista.org/getInstructions.php?UUID=\"" +
+            uuid + "\"&dest=\"" + room + "\"&cat=" + cat;
+            //print("Indirizzo = " + ind);
+    xmlhttp.open("GET", ind, true);
     xmlhttp.send();
+    print("Richiesta inviata");
 }
 
 /*FOR AJAX:

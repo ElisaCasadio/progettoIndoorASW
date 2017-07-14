@@ -111,6 +111,7 @@ function creaTabellaGrande(days, hours, risposta) {
     inizio = inizio.replace(':00', '');
     fine = fine.replace(':00', '');
     var text = inizio + " - " + fine;
+    tr.cells[0].setAttribute("class", "oreGrande");
     tr.cells[0].appendChild(document.createTextNode(text));
 
     var index = 1;

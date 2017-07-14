@@ -48,6 +48,15 @@ table {
 
 /*Fine reset*/
 
+.withBG {
+  background:linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('../img/bg.png');
+  background-size: cover;
+}
+
+.lightBG {
+  background-color: #fff7e3;
+}
+
 body, h1, h2 {
   font-family: Georgia,"Times New Roman",Times,serif;
   /*width: 100%;
@@ -225,6 +234,7 @@ body, h1, h2 {
   text-align: center;
   width: 80%;
   height: auto;
+  background-color: white;
 }
 
 #orarioHome {
@@ -235,9 +245,9 @@ body, h1, h2 {
   height: 40px;
 }
 
-.orarioRistretto tr:nth-child(even) {
+/*.orarioRistretto tr:nth-child(even) {
   background-color: #fff7e3;
-}
+}*/
 
 .tabellaOrario th {
   width: 18%;
@@ -256,9 +266,14 @@ body, h1, h2 {
   width: 12%;
 }
 
+.oreGrande {
+  background-color: #ffeee6;
+}
+
 .orarioRistretto {
   margin: 10px 5px auto 5px;
   width: 100%;
+  background-color: white;
 }
 
 .orarioRistretto .time {
@@ -267,6 +282,7 @@ body, h1, h2 {
 
 .orarioRistretto th {
   height: 30px;
+  background-color: #fff7e3;
 }
 
 #rootTitle {
@@ -344,9 +360,9 @@ h2 {
 
 @media only screen and (max-device-width: 1050px){
 
-  .lightBG {
+  /*.lightBG {
     background-color: #fff7e3;
-  }
+  }*/
 
   .withBG {
     /*width: 100%;
@@ -396,6 +412,11 @@ h2 {
   }
   .empty {
     display: none;
+  }
+
+  #bodyBG {
+    background:linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('../img/bg.png');
+    background-size: cover;
   }
 }
 

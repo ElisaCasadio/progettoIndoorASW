@@ -270,7 +270,12 @@ body, h1, h2 {
   height: 30px;
 }
 
+#rootTitle {
+  display: none;
+}
+
 #way {
+  display: none;
   margin-top: 20px;
 }
 
@@ -453,11 +458,17 @@ h2 {
   }
 
   #rootTitle {
+    display: none;
     margin-top: 40px;
   }
 
   #way {
+    display: none;
     margin-top: 40px;
+  }
+
+  #choice {
+    margin-top: 35px;
   }
 
   .direction-text div {

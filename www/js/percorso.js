@@ -1,9 +1,12 @@
+var listUUID;
+
 $(document).ready(function() {
     var url_string = window.location.href;
     var url = new URL(url_string);
     var room = url.searchParams.get("aula");
     document.getElementById("roomNameDirection").innerHTML = room;
     typeRoute(room);
+    listUUID = new Array();
 });
 
 function typeRoute(room) {
@@ -116,12 +119,27 @@ function startScanForBeacons(room, cat) {
   };
 
   delegate.didEnterRegion = function(result){
+    //print("entrato");
     if(result){
-        var s = "ENTERED REGION! ";// + JSON.stringify(result);
+        //print("ENTERED REGION! ");// + JSON.stringify(result);
         var region = result['region'];
+        var UUID = region['uuid'];
+        //print("UUID =" + UUID);
+        var found = false;
+        for(var i=0; i<listUUID.length; i++) {
+          if(listUUID[i] == UUID) {
+            found = true;
+          }
+        }
         s = s + "\n - regione = " + JSON.stringify(region);
         s = s + "\n - uuid = " + region['uuid'];
-        getDirectionFromBeacon(region['uuid'], room, cat);
+        if(found == false) {
+          //print("Chiedo");
+          getDirectionFromBeacon(UUID, room, cat);
+          //listUUID.push(UUID);
+        }/* else {
+          print("Non chiedo");
+        }*/
     } else {
         var s = "didEnterRegion has no data.";
     }

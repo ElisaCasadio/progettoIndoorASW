@@ -92,10 +92,13 @@ function creaTabellaGrande(days, hours, risposta) {
     tr.appendChild(document.createElement('th'));
   }
   tr.cells[0].setAttribute("id", "timeColumn");
-  tr.cells[0].appendChild(document.createTextNode(''));
+  tr.cells[0].setAttribute("scope", "col");
+  tr.cells[0].appendChild(document.createTextNode('Ore'));
   for(var i = 0; i < days.length; i++) {
     var index = i+1;
     var giorno = days[i].nome;
+    tr.cells[index].setAttribute("scope", "col");
+    tr.cells[index].setAttribute("id", giorno);
     tr.cells[index].appendChild(document.createTextNode(giorno));
   }
   table.appendChild(tr);
@@ -111,6 +114,9 @@ function creaTabellaGrande(days, hours, risposta) {
     fine = fine.replace(':00', '');
     var text = inizio + " - " + fine;
     tr.cells[0].setAttribute("class", "oreGrande");
+    tr.cells[0].setAttribute("scope", "row");
+    var nora = j+1;
+    tr.cells[0].setAttribute("id", nora + " ora");
     tr.cells[0].appendChild(document.createTextNode(text));
 
     var index = 1;
@@ -120,25 +126,31 @@ function creaTabellaGrande(days, hours, risposta) {
       if(lesson!=null && lesson['OraId'] == hours[j].id &&
           lesson['GiornoId'] == days[i].id) {
             s = lesson['NomeMateria'];
+            var d = lesson['NomeGiorno'];
             if(trold != null) {
               if(trold.cells[index] != null &&
                 trold.cells[index].innerHTML == s) {
                 trold.cells[index].setAttribute("rowspan", "2");
               } else {
                 tr.appendChild(document.createElement('td'));
+                var head = d + "," + nora + " ora";
+                tr.cells[index].setAttribute("headers", head);
                 tr.cells[index].appendChild(document.createTextNode(s));
                 index = index + 1;
               }
             } else {
               tr.appendChild(document.createElement('td'));
+              var head = d + "," + nora + " ora";
+              tr.cells[index].setAttribute("headers", head);
               tr.cells[index].appendChild(document.createTextNode(s));
               index = index + 1;
             }
           indexLesson = indexLesson + 1;
       } else {
         tr.appendChild(document.createElement('td'));
-        s = "";
-        tr.cells[index].appendChild(document.createTextNode(s));
+        var head = d + "," + nora + " ora";
+        tr.cells[index].setAttribute("headers", head);
+        tr.cells[index].appendChild(document.createTextNode(""));
         index = index + 1;
       }
     }
@@ -161,11 +173,14 @@ function creaTabellaPiccola(days, hours, risposta) {
     var trgg = document.createElement('tr');
     trgg.appendChild(document.createElement('th'));
     trgg.cells[0].setAttribute("colspan", "2");
+    trgg.cells[0].setAttribute("scope", "row");
     var nome = days[i].nome;
+    trgg.cells[0].setAttribute("id", nome);
     trgg.cells[0].appendChild(document.createTextNode(nome));
     table.appendChild(trgg);
 
     for(var j=0; j<hours.length; j++) {
+        var nora = j + 1;
         var lesson = orario[indexLesson];
         if(lesson != null && lesson['OraId'] == hours[j].id &&
             lesson['GiornoId'] == days[i].id) {
@@ -199,7 +214,10 @@ function creaTabellaPiccola(days, hours, risposta) {
               trless.appendChild(document.createElement('td'));
               trless.appendChild(document.createElement('td'));
               trless.cells[0].setAttribute("class", "time");
+              trless.cells[0].setAttribute("id", nora + " ora");
               trless.cells[0].appendChild(document.createTextNode(text));
+              var head = lesson['NomeGiorno'] + "," + nora + " ora";
+              trless.cells[1].setAttribute("headers", head)
               trless.cells[1].appendChild(document.createTextNode(nome));
               indexLesson = indexLesson + 1;
 
